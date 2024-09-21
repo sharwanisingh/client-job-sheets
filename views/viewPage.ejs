@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HARDIK TRADERS - CLIENT MANAGEMENT DASHBOARD</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .search-bar {
+      margin-bottom: 20px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #f0f0f0;
+      font-weight: bold;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .view-button {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .edit-button {
+      background-color: #ffc107;
+      color: #fff;
+    }
+
+    .delete-button {
+      background-color: #dc3545;
+      color: #fff;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 10px 0;
+      font-size: 14px;
+      color: #6c757d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>HARDIK TRADERS - CLIENT MANAGEMENT DASHBOARD</h1>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search by Client Name or ID...">
+      <button>Search</button>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Client Id</th>
+            <th>Client Name</th>
+            <th>Contact Info</th>
+            <th>Received Date</th>
+            <th>Inventory Received</th>
+            <th>Reported Issues</th>
+            <th>Client Notes</th>
+            <th>Assigned Technician</th>
+            <th>Estimated Amount</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% clients.forEach((client, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= client.clientId %></td>
+              <td><%= client.clientName %></td>
+              <td><%= client.contactInfo %></td>
+              <td><%= client.receivedDate %></td>
+              <td><%= client.inventoryReceived %></td>
+              <td><%= client.reportedIssues %></td>
+              <td><%= client.clientNotes %></td>
+              <td><%= client.assignedTechnician %></td>
+              <td><%= client.estimatedAmount %></td>
+              <td><%= client.deadline %></td>
+              <td><%= client.status %></td>
+              <td>
+                <div class="button-container">
+                  <button class="view-button" onclick="viewClient('<%= client.clientId %>')">View</button>
+                  <button class="edit-button" onclick="editClient('<%= client.clientId %>')">Edit</button>
+                  <button class="delete-button" onclick="deleteClient('<%= client.clientId %>')">Delete</button>
+                </div>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      &copy; 2024 Hardik Traders
+    </div>
+  </div>
+
+  <script>
+    function viewClient(clientId) {
+      // Handle view client logic
+      console.log("Viewing client with ID:", clientId);
+    }
+
+    function editClient(clientId) {
+      // Handle edit client logic
+      console.log("Editing client with ID:", clientId);
+    }
+
+    function deleteClient(clientId) {
+      // Handle delete client logic
+      console.log("Deleting client with ID:", clientId);
+    }
+  </script>
+</body>
+</html>

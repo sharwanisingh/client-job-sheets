@@ -1,0 +1,15 @@
+-- SQLite
+CREATE TABLE clients (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    client_name TEXT NOT NULL,
+    contact_info TEXT NOT NULL,
+    received_date TEXT,
+    inventory_received TEXT,
+    reported_issues TEXT,
+    client_notes TEXT,
+    assigned_technician TEXT,
+    estimated_amount REAL,
+    deadline TEXT,
+    status TEXT
+);
+

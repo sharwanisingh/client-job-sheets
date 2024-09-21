@@ -1,0 +1,6 @@
+-- SQLite
+DELETE FROM clients WHERE id = 1;  -- Replace '1' with the actual ID of the client you want to delete
+DELETE FROM clients WHERE id = 2;  -- Replace '2' with the actual ID of the client you want to delete
+DELETE FROM clients WHERE id = 3;  -- Replace '1' with the actual ID of the client you want to delete
+DELETE FROM clients WHERE id = 4;  -- Replace '2' with the actual ID of the client you want to delete
+DELETE FROM clients WHERE id = 7;  -- Replace '1' with the actual ID of the client you want to delete

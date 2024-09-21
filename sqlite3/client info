@@ -1,0 +1,4 @@
+-- SQLite
+INSERT INTO clients (client_name, contact_info, received_date, inventory_received, reported_issues, client_notes, assigned_technician, estimated_amount, deadline, status) VALUES 
+('nandini goswami', '1234567890', '2024-09-05', 'mouse', 'hgh', 'f', 'f', NULL, '2024-09-18', 'in-progress'),
+('dfgdgfh', '5645645644', '2024-09-13', 'gfs', 'dfghfgh', 'dfg', 'sdfg', 43534.0, '2024-09-12', 'pending');

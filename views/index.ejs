@@ -1,0 +1,171 @@
+<<!DOCTYPE html>
+<html>
+
+<head>
+  <title>HARDIC TRAGERS - CLIENT MANAGEMENT DASHBOARD</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    form {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>HARDIC TRAGERS - CLIENT MANAGEMENT DASHBOARD</h1>
+
+    <div class="full-width-container">
+      <form action="/search-client" method="post" style="display: flex; align-items: center; width: 100%; background-color: #f8f8f8; border: 1px solid #ccc; border-radius: 8px;">
+        <label for="clientId" style="margin-right: 10px;">Search by Client ID:</label>
+        <input type="number" id="clientId" name="clientId" required style="flex: 1; padding: 15px; border: 1px solid #ccc; border-radius: 4px; margin-right: 10px; min-width: 200px;">
+        <button type="submit" style="padding: 15px 20px; background-color: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer;">Search</button>
+      </form>
+    </div>
+    
+    <a href="/new" style="display: block; text-align: center; margin: 20px 0; font-weight: bold;">New Job Sheet</a>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Client Id</th>
+          <th>Client Name</th>
+          <th>Contact Info</th>
+          <th>Received Date</th>
+          <th>Inventory Received</th>
+          <th>Reported Issues</th>
+          <th>Client Notes</th>
+          <th>Assigned Technician</th>
+          <th>Estimated Amount</th>
+          <th>Deadline</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% clients.forEach((client, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= client.id %></td>
+            <td><%= client.client_name %></td>
+            <td><%= client.contact_info %></td>
+            <td><%= client.received_date %></td>
+            <td><%= client.inventory_received %></td>
+            <td><%= client.reported_issues %></td>
+            <td><%= client.client_notes %></td>
+            <td><%= client.assigned_technician %></td>
+            <td><%= client.estimated_amount %></td>
+            <td><%= client.deadline %></td>
+            <td><%= client.status %></td>
+            <td>
+              <a href="/view/<%= client.id %>" style="margin-right: 10px; color: blue;">View</a>
+              <a href="/edit/<%= client.id %>" style="margin-right: 10px; color: orange;">Edit</a>
+              <a href="/delete/<%= client.id %>" style="color: red;">Delete</a>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <footer>
+      <p>For inquiries, contact us at: <a href="mailto:hardictrader@gmail.com">hardictrader@gmail.com</a></p>
+    </footer>
+  </div>
+
+  <script>
+    // JavaScript code to handle search results
+    const searchForm = document.querySelector('form');
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const clientId = document.querySelector('#clientId').value;
+      fetch('/search-client', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientId }),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        const searchResults = document.querySelector('#search-results');
+        if (data.message) {
+          searchResults.innerHTML = `<p>${data.message}</p>`;
+        } else {
+          searchResults.innerHTML = `
+            <p>Client ID: ${data.id}</p>
+            <p>Name: ${data.client_name}</p>
+            <p>Contact Info: ${data.contact_info}</p>
+          `;
+        }
+      })
+      .catch((error) => console.error(error));
+    });
+  </script>
+</body>
+
+</html>
+l
